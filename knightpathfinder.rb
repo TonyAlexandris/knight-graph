@@ -38,7 +38,6 @@ class KnightPathFinder
     end
 
     def build_move_tree(root_node)
-        #tree = [root_node]
         queue = []
         queue.push(root_node)
         until queue.empty?
@@ -46,15 +45,36 @@ class KnightPathFinder
             self.new_move_positions(check).each do |move|
                 new_node = PolyTreeNode.new(move)
                 new_node.parent = check
-                #tree << new_node
             end
             check.children.each {|child| queue.push(child)}
         end
     end
 
+    def find_path(end_pos, start = self.root_node)
+        return start if start.value == end_pos
+        start.children.each do |child|
+            result = self.find_path(end_pos, child)
+            return result unless result == nil
+        end
+        nil
+    end
 
+    def trace_path_back(target)
+        node = self.find_path(target)
+        path = [node]
+        until path[-1] == root_node
+            path << path[-1].parent
+        end
+        path.reverse.map {|node| node.value}
+    end
 end
 
-kpf = KnightPathFinder.new([0, 0])
-kpf.find_path([2, 1]) # => [[0, 0], [2, 1]]
-kpf.find_path([3, 3]) # => [[0, 0], [2, 1], [3, 3]]
+#kpf = KnightPathFinder.new([0, 0])
+#print kpf.trace_path_back([2, 1]) # => [[0, 0], [2, 1]]
+#puts
+#print kpf.trace_path_back([3, 3]) # => [[0, 0], [2, 1], [3, 3]]
+#puts
+#print kpf.trace_path_back([7, 6]) # => [[0, 0], [1, 2], [2, 4], [3, 6], [5, 5], [7, 6]]
+#puts
+#print kpf.trace_path_back([6, 2]) # => [[0, 0], [1, 2], [2, 0], [4, 1], [6, 2]]
+#puts
