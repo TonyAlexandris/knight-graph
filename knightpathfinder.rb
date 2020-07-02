@@ -69,12 +69,12 @@ class KnightPathFinder
     end
 end
 
-#kpf = KnightPathFinder.new([0, 0])
-#print kpf.trace_path_back([2, 1]) # => [[0, 0], [2, 1]]
-#puts
-#print kpf.trace_path_back([3, 3]) # => [[0, 0], [2, 1], [3, 3]]
-#puts
-#print kpf.trace_path_back([7, 6]) # => [[0, 0], [1, 2], [2, 4], [3, 6], [5, 5], [7, 6]]
-#puts
-#print kpf.trace_path_back([6, 2]) # => [[0, 0], [1, 2], [2, 0], [4, 1], [6, 2]]
-#puts
+kpf = KnightPathFinder.new([0, 0])
+print kpf.trace_path_back([2, 1]) # => [[0, 0], [2, 1]]
+puts
+print kpf.trace_path_back([3, 3]) # => [[0, 0], [2, 1], [3, 3]]
+puts
+print kpf.trace_path_back([7, 6]) # => [[0, 0], [1, 2], [2, 4], [3, 6], [5, 5], [7, 6]]
+puts
+print kpf.trace_path_back([6, 2]) # => [[0, 0], [1, 2], [2, 0], [4, 1], [6, 2]]
+puts
